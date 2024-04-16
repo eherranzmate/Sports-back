@@ -1,5 +1,8 @@
+import { error, log } from "console";
 import { Browser } from "puppeteer";
 const puppeteer = require('puppeteer');
+//fs=fileSystem
+const fs = require('fs');
 
 const url = 'https://www.padelnuestro.com/palas-padel';
 
@@ -25,6 +28,12 @@ const main = async () =>{
     console.log(racketsData);
     
     await browser.close();
+
+    fs.writeFile('rackets.json', JSON.stringify(racketsData), (err: any) =>{
+        if(err) throw err
+        console.log("Datos cargados correctamente para el JSON de palas de Padel!");
+        
+    })
 }
 
 main();
